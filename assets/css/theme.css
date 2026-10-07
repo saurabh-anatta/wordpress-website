@@ -23,9 +23,15 @@ header.wp-block-template-part:has(.anatta-site-header),
 	}
 }
 
-/* Hide the site title when a logo is present (progressive enhancement). */
-.anatta-site-header .wp-block-group:has(> .wp-block-site-logo img) > .wp-block-site-title {
+/* Hide the text fallback when a logo is present (progressive enhancement). */
+.anatta-site-header .wp-block-group:has(> .wp-block-site-logo img) > .anatta-site-logo-fallback,
+.anatta-site-footer-brand:has(> .wp-block-site-logo img) > .anatta-site-logo-fallback {
 	display: none;
+}
+
+.anatta-site-logo-fallback .wp-block-site-title {
+	max-width: 11em;
+	line-height: 1.15;
 }
 
 /* 2. Collapse primary navigation into the overlay below 782px ------------ */
@@ -44,21 +50,176 @@ header.wp-block-template-part:has(.anatta-site-header),
 	}
 }
 
-/* 3. Grayscale logo style ------------------------------------------------- */
-.is-style-anatta-site-grayscale img {
-	filter: grayscale(1);
-	opacity: 0.7;
-	transition: filter 0.2s ease, opacity 0.2s ease;
+/* 3. Header buttons ------------------------------------------------------ */
+.anatta-site-header-buttons {
+	align-self: stretch;
 }
 
-.is-style-anatta-site-grayscale img:hover,
-.is-style-anatta-site-grayscale a:focus img {
-	filter: none;
-	opacity: 1;
+.anatta-site-header-buttons .wp-block-button {
+	display: flex;
 }
 
-/* 4. Equal-height cards --------------------------------------------------- */
+.anatta-site-header-buttons .wp-block-button__link {
+	border-radius: 0;
+	height: 100%;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5em;
+	padding: 1.5rem 2rem;
+	white-space: nowrap;
+}
+
+.anatta-site-btn-phone .wp-block-button__link::before,
+.anatta-site-btn-login .wp-block-button__link::before {
+	content: "";
+	display: inline-block;
+	width: 1.4em;
+	height: 1.4em;
+	flex-shrink: 0;
+	background-color: currentColor;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-size: contain;
+	mask-size: contain;
+	-webkit-mask-position: center;
+	mask-position: center;
+}
+
+.anatta-site-btn-phone .wp-block-button__link::before {
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 3h3.5l1.8 4.5-2.3 1.4a11 11 0 0 0 7.1 7.1l1.4-2.3L21 15.5V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z'/%3E%3Cpath d='M15 3a6 6 0 0 1 6 6M15 6.5a2.5 2.5 0 0 1 2.5 2.5'/%3E%3C/svg%3E");
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 3h3.5l1.8 4.5-2.3 1.4a11 11 0 0 0 7.1 7.1l1.4-2.3L21 15.5V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z'/%3E%3Cpath d='M15 3a6 6 0 0 1 6 6M15 6.5a2.5 2.5 0 0 1 2.5 2.5'/%3E%3C/svg%3E");
+}
+
+.anatta-site-btn-login .wp-block-button__link::before {
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='8' r='4'/%3E%3Cpath d='M2 20c0-3.5 3-6 7-6s7 2.5 7 6z'/%3E%3Cpath d='M15 8h7M19 5l3 3-3 3'/%3E%3C/svg%3E");
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='8' r='4'/%3E%3Cpath d='M2 20c0-3.5 3-6 7-6s7 2.5 7 6z'/%3E%3Cpath d='M15 8h7M19 5l3 3-3 3'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 781px) {
+	.anatta-site-header {
+		flex-wrap: wrap;
+	}
+
+	.anatta-site-header-buttons {
+		width: 100%;
+		flex-wrap: wrap;
+	}
+
+	.anatta-site-header-buttons .wp-block-button {
+		flex: 1 1 100%;
+	}
+
+	.anatta-site-header-buttons .wp-block-button__link {
+		width: 100%;
+		justify-content: center;
+		padding: 1rem 1.5rem;
+	}
+}
+
+/* 4. Hero diagonal overlay ---------------------------------------------- */
+/* Baseline: straight-edged overlay on the left half. */
+.anatta-site-hero > .wp-block-cover__background {
+	width: 50%;
+	right: auto;
+}
+
+@supports (clip-path: polygon(0 0)) {
+	.anatta-site-hero > .wp-block-cover__background {
+		width: 100%;
+		right: 0;
+		clip-path: polygon(0 0, 56% 0, 40% 100%, 0 100%);
+	}
+}
+
+@media (max-width: 781px) {
+	.anatta-site-hero > .wp-block-cover__background {
+		width: 100%;
+		right: 0;
+		clip-path: none;
+	}
+}
+
+/* 5. Equal-height cards --------------------------------------------------- */
 .anatta-site-card {
 	height: 100%;
 	box-sizing: border-box;
+}
+
+/* 6. Awards strip -------------------------------------------------------- */
+.anatta-site-award {
+	flex: 1 1 180px;
+	max-width: 220px;
+}
+
+@media (max-width: 480px) {
+	.anatta-site-award {
+		flex-basis: 100%;
+		max-width: none;
+	}
+}
+
+/* 7. Personalized solutions ---------------------------------------------- */
+.anatta-site-solution-card {
+	height: 100%;
+	box-sizing: border-box;
+	box-shadow: 0 24px 48px rgba(16, 33, 58, 0.12);
+}
+
+.anatta-site-learn-more a {
+	color: inherit;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	font-weight: 700;
+}
+
+.anatta-site-learn-more a:hover,
+.anatta-site-learn-more a:focus {
+	text-decoration: underline;
+}
+
+.anatta-site-measure {
+	max-width: 62ch;
+	margin-inline: auto;
+}
+
+/* 8. Feature tabs -------------------------------------------------------- */
+.anatta-site-feature {
+	cursor: pointer;
+	position: relative;
+	padding-bottom: 1.5rem;
+}
+
+.anatta-site-feature.is-active p {
+	font-weight: 700;
+}
+
+.anatta-site-feature.is-active::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: calc(-1 * var(--wp--preset--spacing--30, 24px));
+	transform: translateX(-50%);
+	border-left: 18px solid transparent;
+	border-right: 18px solid transparent;
+	border-bottom: 18px solid var(--wp--preset--color--sky);
+}
+
+.anatta-site-feature:focus-visible {
+	outline: 2px solid var(--wp--preset--color--sky);
+	outline-offset: 4px;
+}
+
+.anatta-site-feature-panel:not(.is-active) {
+	display: none;
+}
+
+.editor-styles-wrapper .anatta-site-feature-panel {
+	display: block;
+}
+
+@media (max-width: 781px) {
+	.anatta-site-feature.is-active::after {
+		display: none;
+	}
 }

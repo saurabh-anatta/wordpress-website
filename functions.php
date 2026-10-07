@@ -19,7 +19,7 @@ function anatta_site_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'anatta_site_enqueue_styles', 20 );
 
 /**
- * Enqueue supplemental theme styles (sticky header, nav breakpoint, grayscale logos, cards).
+ * Enqueue supplemental theme styles (sticky header, nav breakpoint, hero overlay, cards, feature tabs).
  */
 function anatta_site_enqueue_theme_styles() {
 	wp_enqueue_style(
@@ -32,6 +32,23 @@ function anatta_site_enqueue_theme_styles() {
 add_action( 'wp_enqueue_scripts', 'anatta_site_enqueue_theme_styles', 20 );
 
 /**
+ * Enqueue the success-features tab script.
+ */
+function anatta_site_enqueue_features_script() {
+	wp_enqueue_script(
+		'anatta-site-features',
+		get_theme_file_uri( 'assets/js/features.js' ),
+		array(),
+		wp_get_theme()->get( 'Version' ),
+		array(
+			'strategy'  => 'defer',
+			'in_footer' => true,
+		)
+	);
+}
+add_action( 'wp_enqueue_scripts', 'anatta_site_enqueue_features_script' );
+
+/**
  * Theme setup — runs after the parent's after_setup_theme callbacks.
  */
 function anatta_site_setup() {
@@ -40,20 +57,12 @@ function anatta_site_setup() {
 add_action( 'after_setup_theme', 'anatta_site_setup', 11 );
 
 /**
- * Register the pattern category and custom block styles.
+ * Register the pattern category.
  */
 function anatta_site_register_block_extras() {
 	register_block_pattern_category(
 		'anatta-site',
 		array( 'label' => __( 'Anatta', 'anatta-site' ) )
-	);
-
-	register_block_style(
-		'core/image',
-		array(
-			'name'  => 'anatta-site-grayscale',
-			'label' => __( 'Grayscale', 'anatta-site' ),
-		)
 	);
 }
 add_action( 'init', 'anatta_site_register_block_extras' );
@@ -84,13 +93,3 @@ function anatta_site_register_bindings() {
 	);
 }
 add_action( 'init', 'anatta_site_register_bindings' );
-
-/**
- * Create the "Work" category used by the Featured work query loop.
- */
-function anatta_site_create_work_category() {
-	if ( ! term_exists( 'work', 'category' ) ) {
-		wp_insert_term( 'Work', 'category', array( 'slug' => 'work' ) );
-	}
-}
-add_action( 'after_switch_theme', 'anatta_site_create_work_category' );

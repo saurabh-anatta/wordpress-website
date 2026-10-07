@@ -1,19 +1,37 @@
-<!-- wp:group {"align":"full","className":"anatta-site-header","backgroundColor":"surface","style":{"border":{"bottom":{"color":"var:preset|color|muted","width":"1px"}},"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull anatta-site-header has-surface-background-color has-background" style="border-bottom-color:var(--wp--preset--color--muted);border-bottom-width:1px;padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
-<div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-<div class="wp-block-group"><!-- wp:site-logo {"width":140} /-->
+<!-- wp:group {"align":"full","className":"anatta-site-header","backgroundColor":"surface","style":{"spacing":{"padding":{"top":"0","bottom":"0","left":"0","right":"0"},"blockGap":"0"}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"stretch"}} -->
+<div class="wp-block-group alignfull anatta-site-header has-surface-background-color has-background" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|20","padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--30)"><!-- wp:site-logo {"width":56} /-->
 
-<!-- wp:site-title {"level":0,"fontSize":"large","style":{"typography":{"fontWeight":"700"}}} /--></div>
+<!-- wp:group {"className":"anatta-site-logo-fallback","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+<div class="wp-block-group anatta-site-logo-fallback"><!-- wp:paragraph {"textColor":"navy","fontSize":"x-large","style":{"typography":{"fontWeight":"800","lineHeight":"1"}}} -->
+<p class="has-navy-color has-text-color has-x-large-font-size" style="font-weight:800;line-height:1">NW</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:site-title {"level":0,"textColor":"ink","fontSize":"small","style":{"elements":{"link":{"color":{"text":"var:preset|color|ink"}}}}} /--></div>
+<!-- /wp:group --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
-<div class="wp-block-group"><!-- wp:navigation {"overlayMenu":"mobile","className":"anatta-site-header-nav","layout":{"type":"flex","justifyContent":"right"}} /-->
+<!-- wp:group {"style":{"spacing":{"padding":{"left":"var:preset|spacing|30","right":"var:preset|spacing|30"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right","verticalAlignment":"center"}} -->
+<div class="wp-block-group" style="padding-right:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:navigation {"textColor":"ink","overlayMenu":"mobile","className":"anatta-site-header-nav","style":{"typography":{"fontWeight":"600"},"spacing":{"blockGap":"var:preset|spacing|50"}},"layout":{"type":"flex","justifyContent":"right"}} -->
+<!-- wp:navigation-link {"label":"What We Offer","url":"#","kind":"custom","isTopLevelLink":true} /-->
 
-<!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"brand","textColor":"surface"} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-surface-color has-brand-background-color has-text-color has-background wp-element-button" href="/contact">Get in touch</a></div>
+<!-- wp:navigation-link {"label":"Who We Serve","url":"#","kind":"custom","isTopLevelLink":true} /-->
+
+<!-- wp:navigation-link {"label":"About Us","url":"#","kind":"custom","isTopLevelLink":true} /-->
+
+<!-- wp:navigation-link {"label":"News and Events","url":"#","kind":"custom","isTopLevelLink":true} /-->
+
+<!-- wp:navigation-link {"label":"Contact","url":"#","kind":"custom","isTopLevelLink":true} /-->
+<!-- /wp:navigation --></div>
+<!-- /wp:group -->
+
+<!-- wp:buttons {"className":"anatta-site-header-buttons","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<div class="wp-block-buttons anatta-site-header-buttons"><!-- wp:button {"backgroundColor":"navy","textColor":"surface","className":"anatta-site-btn-phone","style":{"border":{"radius":"0"}}} -->
+<div class="wp-block-button anatta-site-btn-phone"><a class="wp-block-button__link has-surface-color has-navy-background-color has-text-color has-background wp-element-button" href="#" style="border-radius:0">Schedule a Call</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"backgroundColor":"sky","textColor":"surface","className":"anatta-site-btn-login","style":{"border":{"radius":"0"}}} -->
+<div class="wp-block-button anatta-site-btn-login"><a class="wp-block-button__link has-surface-color has-sky-background-color has-text-color has-background wp-element-button" href="#" style="border-radius:0">Client Login</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
-<!-- /wp:group --></div>
-<!-- /wp:group --></div>
 <!-- /wp:group -->
