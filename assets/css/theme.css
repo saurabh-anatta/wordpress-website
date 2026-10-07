@@ -1,0 +1,64 @@
+/**
+ * anatta-site — supplemental styles for behaviour core block attributes cannot express.
+ *
+ * @package anatta-site
+ */
+
+/* 1. Sticky header ------------------------------------------------------- */
+header.wp-block-template-part:has(.anatta-site-header),
+.anatta-site-header {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	background-color: var(--wp--preset--color--surface);
+}
+
+.admin-bar header.wp-block-template-part:has(.anatta-site-header) {
+	top: 32px;
+}
+
+@media (max-width: 782px) {
+	.admin-bar header.wp-block-template-part:has(.anatta-site-header) {
+		top: 46px;
+	}
+}
+
+/* Hide the site title when a logo is present (progressive enhancement). */
+.anatta-site-header .wp-block-group:has(> .wp-block-site-logo img) > .wp-block-site-title {
+	display: none;
+}
+
+/* 2. Collapse primary navigation into the overlay below 782px ------------ */
+/*
+ * Core's overlayMenu "mobile" switches at 600px using its own display rules.
+ * !important is required here to override core's min-width media query
+ * display values on the toggle and responsive container.
+ */
+@media (max-width: 781px) {
+	.anatta-site-header-nav .wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: flex !important;
+	}
+
+	.anatta-site-header-nav .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+		display: none !important;
+	}
+}
+
+/* 3. Grayscale logo style ------------------------------------------------- */
+.is-style-anatta-site-grayscale img {
+	filter: grayscale(1);
+	opacity: 0.7;
+	transition: filter 0.2s ease, opacity 0.2s ease;
+}
+
+.is-style-anatta-site-grayscale img:hover,
+.is-style-anatta-site-grayscale a:focus img {
+	filter: none;
+	opacity: 1;
+}
+
+/* 4. Equal-height cards --------------------------------------------------- */
+.anatta-site-card {
+	height: 100%;
+	box-sizing: border-box;
+}
